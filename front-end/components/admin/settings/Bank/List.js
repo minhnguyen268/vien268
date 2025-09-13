@@ -6,17 +6,24 @@ import { DataGrid } from "@mui/x-data-grid";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import BreadcrumbBar from "../../BreadcrumbBar";
+import { useTranslation } from "react-i18next";
+
+
+const List = () => {
+	
+  const { t } = useTranslation("common");
+  
 const BreadcrumbData = [
   {
-    title: "Admin",
+    title: t("Admin"),
     href: "/admin",
   },
   {
-    title: "Quản lý ngân hàng",
+    title: t("Quản lý ngân hàng"),
     href: "/admin/settings/bank",
   },
 ];
-const List = () => {
+  
   const { data: dataQuery, isLoading } = useGetListBank();
   const router = useRouter();
   const GridRowsProp =
@@ -35,12 +42,12 @@ const List = () => {
 
   const GridColDef = [
     { field: "stt", headerName: "STT", width: 100 },
-    { field: "code", headerName: "Bank code", width: 100 },
-    { field: "shortName", headerName: "Tên rút gọn", width: 100 },
-    { field: "tenBank", headerName: "Tên bank", width: 250 },
+    { field: "code", headerName: t("Bank code"), width: 100 },
+    { field: "shortName", headerName: t("Tên rút gọn"), width: 100 },
+    { field: "tenBank", headerName: t("Tên bank"), width: 250 },
     {
       field: "image",
-      headerName: "Hình ảnh",
+      headerName: t("Hình ảnh"),
       width: 100,
       renderCell: (params) => {
         return (
@@ -57,17 +64,17 @@ const List = () => {
     },
     {
       field: "tenChuTaiKhoan",
-      headerName: "Tên chủ tài khoản",
+      headerName: t("Tên chủ tài khoản"),
       width: 250,
       renderCell: (params) => {
         return <div className="content-html" dangerouslySetInnerHTML={{ __html: params.value }} />;
       },
     },
 
-    { field: "soTaiKhoan", headerName: "Số tài khoản", width: 250 },
+    { field: "soTaiKhoan", headerName: t("Số tài khoản"), width: 250 },
     {
       field: "status",
-      headerName: "Tình trạng",
+      headerName: t("Tình trạng"),
       width: 170,
       renderCell: (params) => {
         return convertJSXTinhTrangListBank(params.value);
@@ -75,7 +82,7 @@ const List = () => {
     },
     {
       field: "action",
-      headerName: "Thao tác",
+      headerName: t("Thao tác"),
       type: "actions",
       width: 150,
       getActions: (params) => [
@@ -95,10 +102,10 @@ const List = () => {
           fontSize: "2.5rem",
         }}
       >
-        Danh sách ngân hàng
+	  {t("Danh sách ngân hàng")}
       </h1>
       <Link href="/admin/settings/bank/new">
-        <Button>Thêm mới</Button>
+        <Button> {t("Thêm mới")} </Button>
       </Link>
 
       <Box
