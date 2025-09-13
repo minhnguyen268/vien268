@@ -1,29 +1,32 @@
 import { Backdrop, Box, Button, CircularProgress } from "@mui/material";
 import { useRouter } from "next/router";
-
 import Layout from "@/components/admin/Layout";
 import { toast } from "react-toastify";
-
 import BreadcrumbBar from "@/components/admin/BreadcrumbBar";
 import FormBank from "@/components/admin/settings/Bank/FormBank";
 import useGetDetailedBank from "@/hooks/admin/useGetDetailedBank";
 import BankService from "@/services/admin/BankService";
 
+import { useTranslation } from "react-i18next";
+
 import { NextSeo } from "next-seo";
 import { useState } from "react";
 
 const ChiTiet = ({ ID }) => {
+	
+  const { t } = useTranslation("common");
+  
   const BreadcrumbData = [
     {
-      title: "Admin",
+      title: t("Admin"),
       href: "/admin",
     },
     {
-      title: "Quản lý ngân hàng",
+      title: t("Quản lý ngân hàng"),
       href: "/admin/settings/bank",
     },
     {
-      title: "Chi tiết",
+      title: t("Chi tiết"),
       href: "/admin/settings/bank/" + ID,
     },
   ];
@@ -70,7 +73,7 @@ const ChiTiet = ({ ID }) => {
             fontSize: "2.5rem",
           }}
         >
-          Chi tiết ngân hàng
+		{t("Chi tiết ngân hàng")}
         </h1>
 
         {isLoadingQuery && (
@@ -85,7 +88,7 @@ const ChiTiet = ({ ID }) => {
 
         {dataQuery && (
           <>
-            <Button onClick={handleClickDelete}>Xóa ngân hàng</Button>
+            <Button onClick={handleClickDelete}> {t("Xóa ngân hàng")} </Button>
 
             <FormBank data={dataQuery} handleOnSubmit={handleClickSubmit} />
           </>
