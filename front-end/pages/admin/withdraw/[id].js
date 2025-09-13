@@ -12,19 +12,23 @@ import { convertTinhTrangWithdrawHistory } from "@/utils/convertTinhTrang";
 import { NextSeo } from "next-seo";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const ChiTiet = ({ ID }) => {
+	
+  const { t } = useTranslation("common");
+  
   const BreadcrumbData = [
     {
-      title: "Admin",
+      title: t("Admin"),
       href: "/admin",
     },
     {
-      title: "Quản lý rút tiền",
+      title: t("Quản lý rút tiền"),
       href: "/admin/withdraw",
     },
     {
-      title: "Chi tiết",
+      title: t("Chi tiết"),
       href: "/admin/withdraw/" + ID,
     },
   ];
@@ -87,7 +91,7 @@ const ChiTiet = ({ ID }) => {
             fontSize: "2.5rem",
           }}
         >
-          Chi tiết yêu cầu rút tiền
+		{t("Chi tiết yêu cầu rút tiền")}
         </h2>
         <Box
           sx={{
@@ -104,22 +108,22 @@ const ChiTiet = ({ ID }) => {
           {!isLoading && (
             <>
               <FormControl fullWidth>
-                <Typography>Tài khoản</Typography>
+                <Typography> {t("Tài khoản")} </Typography>
                 <OutlinedInput size="small" type="text" fullWidth value={taiKhoan} disabled />
               </FormControl>
               <FormControl fullWidth>
-                <Typography>Ngân hàng</Typography>
+                <Typography> {t("Ngân hàng")} </Typography>
                 <OutlinedInput size="small" type="text" fullWidth value={nganHang} disabled />
               </FormControl>
 
               <FormControl fullWidth>
-                <Typography>Số tiền</Typography>
+                <Typography> {t("Số tiền")} </Typography>
                 <OutlinedInput size="small" type="text" fullWidth value={soTien} disabled />
               </FormControl>
               <FormControl fullWidth>
-                <Typography>Nội dung phản hồi</Typography>
+                <Typography> {t("Nội dung phản hồi")} </Typography>
                 <OutlinedInput
-                  placeholder="Nội dung"
+                  placeholder={t("Nội dung")}
                   onChange={(e) => setNoiDung(e.target.value)}
                   size="small"
                   type="text"
@@ -129,14 +133,14 @@ const ChiTiet = ({ ID }) => {
               </FormControl>
               <FormControl fullWidth>
                 <Typography>
-                  Tình trạng{" "}
+                  {t("Tình trạng")} {" "}
                   <span
                     style={{
                       color: "red",
                       display: "block",
                     }}
                   >
-                    (Nếu thay đổi từ "đang chờ" sang "đã hủy" thì sẽ tự động hoàn lại tiền cho người dùng)
+                    {t("(Nếu thay đổi từ đang chờ sang đã hủy thì sẽ tự động hoàn lại tiền cho người dùng)")}
                   </span>
                 </Typography>
 
@@ -156,12 +160,12 @@ const ChiTiet = ({ ID }) => {
                 </Select>
               </FormControl>
               <FormControl fullWidth>
-                <Typography>Thời gian</Typography>
+                <Typography> {t("Thời gian")} </Typography>
                 <OutlinedInput size="small" type="text" fullWidth value={convertDateTime(thoiGian)} disabled />
               </FormControl>
 
               <Button variant="outlined" onClick={handleClickSubmit}>
-                Chỉnh sửa
+                {t("Chỉnh sửa")}
               </Button>
             </>
           )}
