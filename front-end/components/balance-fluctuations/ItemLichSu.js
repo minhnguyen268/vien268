@@ -82,9 +82,9 @@ const ItemLichSu = ({ item }) => {
             fontSize: "1.3rem",
           }}
         >
-          {t("Content")}: 
+          {t("Content")}: {t("Content")}: {convertNoiDung(item.noiDung)}
         </Typography>
-
+		
         <Typography
           sx={{
             fontSize: "1.3rem",
