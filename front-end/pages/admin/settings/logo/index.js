@@ -5,6 +5,7 @@ import { Button } from "@mui/material";
 import SettingService from "@/services/admin/SettingService";
 import { toast } from "react-toastify";
 import Switch from "@mui/material/Switch";
+import { useTranslation } from "react-i18next";
 
 const initialSettingGames = {
   keno1P: "active",
@@ -17,18 +18,23 @@ const initialSettingGames = {
   xocdia1P: "active",
 };
 
-const gameNames = {
-  keno1P: "Keno 1P",
-  keno3P: "Keno 3P",
-  keno5P: "Keno 5P",
-  xoso3P: "Xổ số 3P",
-  xoso5P: "Xổ số 5P",
-  xucxac1P: "Xúc xắc 1P",
-  xucxac3P: "Xúc xắc 3P",
-  xocdia1P: "Xóc đĩa 1P",
-};
+
 
 const Home = () => {
+	  
+  const { t } = useTranslation("common");
+  
+const gameNames = {
+  keno1P: t("LOTTERY 3M"),
+  keno3P: t("LOTTERY 5M"),
+  keno5P: t("KENO 1M"),
+  xucxac1P: t("KENO 3M"),
+  xucxac3P: t("KENO 5M"),
+  xocdia1P: t("DICE 1M"),
+  xoso3P: t("DICE 3M"),
+  xoso5P: t("DISH SHAKING 1M"),
+};
+  
   const [logo, setLogo] = useState("");
   const [maGioiThieu, setMaGioiThieu] = useState("");
   const [noiDungPopup, setNoiDungPopup] = useState("");
@@ -40,15 +46,20 @@ const Home = () => {
   const [settingGames, setSettingGames] = useState([]);
 
   const submit = async () => {
+	  
+
+  
     try {
       await SettingService.update(logo, maGioiThieu, noiDungPopup, scriptChat, undefined, settingGames);
-      toast.success("Thay đổi thành công!");
+      toast.success(t("Thay đổi thành công!"));
     } catch (error) {
-      toast.error("Thay đổi thất bại!");
+      toast.error(t("Thay đổi thất bại!"));
     }
   };
 
   const getData = async () => {
+
+  
     const res = await SettingService.get();
     setLogo(res.data.data?.logo);
     setMaGioiThieu(res.data.data?.maGioiThieu);
@@ -77,11 +88,11 @@ const Home = () => {
       <Layout>
         <div style={{ width: "100%" }}>
           <div style={{ color: "#000", fontSize: 30, fontWeight: 600, textAlign: "center", marginBottom: "50px" }}>
-            Chỉnh sửa logo, mã giới thiệu, popup thông báo
+			  {t("Chỉnh sửa logo, mã giới thiệu, popup thông báo")}
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", marginBottom: 50, gap: "10px" }}>
-            <div style={{ color: "#000", fontSize: 15, width: "210px" }}>Logo (đường link ảnh)</div>
+            <div style={{ color: "#000", fontSize: 15, width: "210px" }}> {t("Logo (đường link ảnh)")} </div>
             <input
               value={logo}
               onChange={(e) => setLogo(e.target.value)}
@@ -91,7 +102,7 @@ const Home = () => {
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", marginBottom: 50, gap: "10px" }}>
-            <div style={{ color: "#000", fontSize: 15, width: "210px" }}>Mã giới thiệu</div>
+            <div style={{ color: "#000", fontSize: 15, width: "210px" }}> {t("Mã giới thiệu")} </div>
             <input
               value={maGioiThieu}
               onChange={(e) => setMaGioiThieu(e.target.value)}
@@ -102,7 +113,7 @@ const Home = () => {
 
           <div style={{ width: "100%", color: "black", marginBottom: 50, fontSize: "2rem" }}>
             <div style={{ color: "#000", fontSize: 15, width: "210px", paddingBottom: "10px" }}>
-              Nội dung popup thông báo
+              {t("Nội dung popup thông báo")}
             </div>
             {editorLoaded && (
               <CKEditor
@@ -121,7 +132,7 @@ const Home = () => {
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-            <div style={{ color: "#000", fontSize: 15, width: "210px", paddingBottom: "10px" }}>Bật/tắt các game</div>
+            <div style={{ color: "#000", fontSize: 15, width: "210px", paddingBottom: "10px" }}> {t("Bật/tắt các game")} </div>
             {Object.keys(settingGames).map((key) => (
               <div key={key} style={{ display: "flex", gap: "10px", alignItems: "center" }}>
                 <div style={{ color: "#000", fontSize: 15, width: "210px" }}>{gameNames[key]}</div>
@@ -139,7 +150,7 @@ const Home = () => {
           </div>
 
           <div style={{ display: "flex", alignItems: "center", marginTop: "30px", justifyContent: "center" }}>
-            <Button onClick={submit}>Cập nhật</Button>
+            <Button onClick={submit}> {t("Cập nhật")} </Button>
           </div>
         </div>
       </Layout>
