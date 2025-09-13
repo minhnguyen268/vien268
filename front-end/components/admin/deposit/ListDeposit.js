@@ -12,8 +12,11 @@ import { useState } from "react";
 import CreateDeposit from "./CreateDeposit";
 import { toast } from "react-toastify";
 import DepositService from "@/services/admin/DepositService";
+import { useTranslation } from "react-i18next";
 
 const ListDeposit = ({ userId = "" }) => {
+  const { t } = useTranslation("common");
+  
   const [deleteId, setDeleteId] = useState("");
   const [page, setPage] = useState(0);
   const router = useRouter();
@@ -38,10 +41,10 @@ const ListDeposit = ({ userId = "" }) => {
 
   const GridColDef = [
     { field: "stt", headerName: "STT", width: 100 },
-    { field: "taiKhoan", headerName: "Tài khoản", width: 150 },
+    { field: "taiKhoan", headerName: t("Tài khoản"), width: 150 },
     {
       field: "soTien",
-      headerName: "Số tiền",
+      headerName: t("Số tiền"),
       width: 150,
       renderCell: (params) => {
         return convertJSXMoney(params.value);
@@ -49,17 +52,17 @@ const ListDeposit = ({ userId = "" }) => {
     },
     {
       field: "nganHang",
-      headerName: "Ngân hàng",
+      headerName: t("Ngân hàng"),
       width: 150,
     },
     {
       field: "noiDung",
-      headerName: "Nội dung",
+      headerName: t("Nội dung"),
       width: 250,
     },
     {
       field: "tinhTrang",
-      headerName: "Tình trạng",
+      headerName: t("Tình trạng"),
       width: 150,
       renderCell: (params) => {
         return convertJSXTinhTrangDepositHistory(params.row.tinhTrang);
@@ -69,10 +72,10 @@ const ListDeposit = ({ userId = "" }) => {
       },
     },
 
-    { field: "createdAt", headerName: "Thời gian", width: 150 },
+    { field: "createdAt", headerName: t("Thời gian"), width: 150 },
     {
       field: "action",
-      headerName: "Thao tác",
+      headerName: t("Thao tác"),
       type: "actions",
       width: 150,
       getActions: (params) => [
@@ -83,7 +86,7 @@ const ListDeposit = ({ userId = "" }) => {
     },
     {
       field: "action-remove",
-      headerName: "Xóa giao dịch",
+      headerName: t("Xóa giao dịch"),
       type: "actions",
       width: 150,
       getActions: (params) => {
@@ -103,7 +106,7 @@ const ListDeposit = ({ userId = "" }) => {
                   cursor: "pointer",
                 }}
               >
-                Xoá
+			  {t("Xoá")}
               </button>
             )}
           </>,
@@ -117,9 +120,9 @@ const ListDeposit = ({ userId = "" }) => {
       await DepositService.removeDeposit(id);
       refetch();
       setDeleteId("");
-      toast.success("Xoá giao dịch thành công");
+      toast.success(t("Xoá giao dịch thành công"));
     } catch {
-      toast.error("Xoá giao dịch thất bại");
+      toast.error(t("Xoá giao dịch thất bại"));
     }
   };
 
@@ -129,14 +132,14 @@ const ListDeposit = ({ userId = "" }) => {
 
       <Dialog open={deleteId} onClose={() => setDeleteId("")} sx={{ "& .MuiDialog-paper": { minWidth: "600px" } }}>
         <DialogTitle>
-          Xác nhận xoá yêu cầu nạp tiền (đồng thời xoá lịch sử biến động của người cho giao dịch này)
+		{t("Xác nhận xoá yêu cầu nạp tiền (đồng thời xoá lịch sử biến động của người cho giao dịch này)")}
         </DialogTitle>
         <DialogActions>
           <Button onClick={() => setDeleteId("")} color="secondary">
-            Quay lại
+            {t("Quay lại")}
           </Button>
           <Button onClick={() => xoaGiaoDich(deleteId)} color="primary">
-            Xoá
+            {t("Xoá")}
           </Button>
         </DialogActions>
       </Dialog>
