@@ -9,19 +9,23 @@ import NotificationService from "@/services/admin/NotificationService";
 import { NextSeo } from "next-seo";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const ChiTiet = ({ ID }) => {
+
+  const { t } = useTranslation("common");
+
   const BreadcrumbData = [
     {
-      title: "Admin",
+      title: t("Admin"),
       href: "/admin",
     },
     {
-      title: "Quản lý thông báo",
+      title: t("Quản lý thông báo"),
       href: "/admin/settings/notifications",
     },
     {
-      title: "Chi tiết thông báo",
+      title: t("Chi tiết thông báo"),
       href: "/admin/settings/notifications/" + ID,
     },
   ];
@@ -69,7 +73,7 @@ const ChiTiet = ({ ID }) => {
             fontSize: "2.5rem",
           }}
         >
-          Chi tiết thông báo
+		{t("Chi tiết thông báo")}
         </h1>
 
         {isLoadingQuery && (
@@ -84,7 +88,7 @@ const ChiTiet = ({ ID }) => {
 
         {data && (
           <>
-            <Button onClick={handleClickDeleteThongBao}>Xóa thông báo</Button>
+            <Button onClick={handleClickDeleteThongBao}> {t("Xóa thông báo")} </Button>
 
             <FormNotification data={data} handleOnSubmit={handleOnSubmit} />
           </>
