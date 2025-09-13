@@ -9,17 +9,26 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import BreadcrumbBar from "../../BreadcrumbBar";
+import { useTranslation } from "react-i18next";
+
+
+const ListNotification = () => {
+	
+  const { t } = useTranslation("common");
+  
 const BreadcrumbData = [
+
+
   {
-    title: "Admin",
+    title: t("Admin"),
     href: "/admin",
   },
   {
-    title: "Quản lý thông báo",
+    title: t("Quản lý thông báo"),
     href: "/admin/settings/thongbao",
   },
 ];
-const ListNotification = () => {
+  
   const router = useRouter();
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(ADMIN_LIST_NOTIFICATIONS_PAGE_SIZE);
@@ -38,10 +47,10 @@ const ListNotification = () => {
 
   const GridColDef = [
     { field: "stt", headerName: "STT", width: 100 },
-    { field: "tieuDe", headerName: "Tiêu đề", width: 250 },
+    { field: "tieuDe", headerName: t("Tiêu đề"), width: 250 },
     {
       field: "hinhAnh",
-      headerName: "Hình ảnh",
+      headerName: t("Hình ảnh"),
       width: 250,
       renderCell: (params) => {
         return (
@@ -58,18 +67,18 @@ const ListNotification = () => {
     },
     {
       field: "noiDung",
-      headerName: "Nội dung",
+      headerName: t("Nội dung"),
       width: 250,
       renderCell: (params) => {
         return <div className="content-html" dangerouslySetInnerHTML={{ __html: params.value }} />;
       },
     },
 
-    { field: "createdAt", headerName: "Thời gian tạo", width: 250 },
+    { field: "createdAt", headerName: t("Thời gian"), width: 250 },
 
     {
       field: "action",
-      headerName: "Thao tác",
+      headerName: t("Thao tác"),
       type: "actions",
       width: 150,
       getActions: (params) => [
@@ -89,10 +98,10 @@ const ListNotification = () => {
           fontSize: "2.5rem",
         }}
       >
-        Danh sách thông báo
+	  {t("Danh sách thông báo")}
       </h1>
       <Link href="/admin/settings/notifications/new">
-        <Button>Thêm mới</Button>
+        <Button> {t("Thêm mới")} </Button>
       </Link>
 
       <Box
