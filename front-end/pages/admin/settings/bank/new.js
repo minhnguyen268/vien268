@@ -3,19 +3,23 @@ import Layout from "@/components/admin/Layout";
 import FormBank from "@/components/admin/settings/Bank/FormBank";
 import BankService from "@/services/admin/BankService";
 import { NextSeo } from "next-seo";
+import { useTranslation } from "react-i18next";
 
 const ThemBank = () => {
+
+  const { t } = useTranslation("common");
+	
   const BreadcrumbData = [
     {
-      title: "Admin",
+      title: t("Admin"),
       href: "/admin",
     },
     {
-      title: "Quản lý ngân hàng",
+      title: t("Quản lý ngân hàng"),
       href: "/admin/settings/bank",
     },
     {
-      title: "Thêm ngân hàng",
+      title: t("Thêm ngân hàng"),
       href: "/admin/settings/bank/new",
     },
   ];
@@ -43,7 +47,7 @@ const ThemBank = () => {
             fontSize: "2.5rem",
           }}
         >
-          Thêm ngân hàng
+		{t("Thêm ngân hàng")}
         </h1>
         <FormBank
           data={{
