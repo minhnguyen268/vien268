@@ -7,8 +7,12 @@ import { useEffect, useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+import { useTranslation } from "react-i18next";
 
 const FormNotification = ({ data, handleOnSubmit }) => {
+	
+  const { t } = useTranslation("common");
+  
   const editorRef = useRef();
   const [isLoading, setIsLoading] = useState(false);
   const [editorLoaded, setEditorLoaded] = useState(false);
@@ -87,13 +91,13 @@ const FormNotification = ({ data, handleOnSubmit }) => {
               flexDirection: "column",
             }}
           >
-            <Typography>Tiêu đề</Typography>
+            <Typography> {t("Tiêu đề")} </Typography>
             <Controller
               name="tieuDe"
               control={control}
               render={({ field: { ref, ...field } }) => (
                 <OutlinedInput
-                  placeholder="Tiêu đề"
+                  placeholder={t("Tiêu đề")}
                   size="small"
                   fullWidth
                   error={errors.tieuDe ? true : false}
@@ -113,13 +117,13 @@ const FormNotification = ({ data, handleOnSubmit }) => {
               flexDirection: "column",
             }}
           >
-            <Typography>Link ảnh</Typography>
+            <Typography>{t("Link ảnh")}</Typography>
             <Controller
               name="hinhAnh"
               control={control}
               render={({ field: { ref, ...field } }) => (
                 <OutlinedInput
-                  placeholder="Link hình ảnh"
+                  placeholder={t("Link hình ảnh")}
                   size="small"
                   fullWidth
                   error={errors.hinhAnh ? true : false}
@@ -140,7 +144,7 @@ const FormNotification = ({ data, handleOnSubmit }) => {
                 flexDirection: "column",
               }}
             >
-              <Typography>Nội dung</Typography>
+              <Typography>{t("Nội dung")}</Typography>
 
               <Box sx={{ width: "100%", color: "black", fontSize: "2rem" }}>
                 <Controller
@@ -172,7 +176,7 @@ const FormNotification = ({ data, handleOnSubmit }) => {
             }}
           >
             <Button type="submit" onClick={handleSubmit(onSubmit)}>
-              Xác nhận
+              {t("Xác nhận")}
             </Button>
           </Box>
         </Box>
