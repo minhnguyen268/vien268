@@ -3,19 +3,23 @@ import Layout from "@/components/admin/Layout";
 import FormNotification from "@/components/admin/settings/Notification/FormNotification";
 import NotificationService from "@/services/admin/NotificationService";
 import { NextSeo } from "next-seo";
+import { useTranslation } from "react-i18next";
 
 const ThemThongBao = () => {
+	
+    const { t } = useTranslation("common");
+	
   const BreadcrumbData = [
     {
-      title: "Admin",
+      title: t("Admin"),
       href: "/admin",
     },
     {
-      title: "Quản lý thông báo",
+      title: t("Quản lý thông báo"),
       href: "/admin/settings/notifications",
     },
     {
-      title: "Thêm thông báo",
+      title: t("Thêm thông báo"),
       href: "/admin/settings/notifications/new",
     },
   ];
@@ -40,7 +44,7 @@ const ThemThongBao = () => {
             fontSize: "2.5rem",
           }}
         >
-          Thêm thông báo
+		{t("Thêm thông báo")}
         </h1>
         <FormNotification
           data={{
