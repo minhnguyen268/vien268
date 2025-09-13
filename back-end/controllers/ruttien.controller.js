@@ -16,6 +16,16 @@ const NguoiDung = require("../models/NguoiDung");
 const bcrypt = require("bcryptjs");
 const WithdrawSocketService = require("../services/withdraw.socket.service");
 
+function maskBank(bank) {
+  if (!bank) return "";
+  if (bank.length <= 4) {
+    return bank; // không che nếu số ngắn
+  }
+  const last4 = bank.slice(-4);
+  const masked = "*".repeat(bank.length - 4) + last4;
+  return masked;
+}
+
 class RutTienController {
   static getDanhSach = catchAsync(async (req, res, next) => {
     const page = req.query.page * 1 || 1;
@@ -107,7 +117,7 @@ class RutTienController {
           }
         );
 
-        const thongTinNganHang = `${findThongTinNganHang.tenNganHang} - ${findThongTinNganHang.tenChuTaiKhoan} - ${findThongTinNganHang.soTaiKhoan}`;
+        const thongTinNganHang = `${findThongTinNganHang.tenNganHang} - ${findThongTinNganHang.tenChuTaiKhoan} - ${maskBank(findThongTinNganHang.soTaiKhoan)}`;
         await BienDongSoDuServiceFactory.createBienDong({
           type: TYPE_BALANCE_FLUCTUATION.WITHDRAW,
           payload: {
