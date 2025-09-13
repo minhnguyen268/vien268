@@ -11,21 +11,27 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+import { useTranslation } from "react-i18next";
+
+
 
 const FormBank = ({ data, handleOnSubmit, hideStatus }) => {
+	
+  const { t } = useTranslation("common");
+  
   const [isLoading, setIsLoading] = useState(false);
 
   // form validation rules
   const validationSchema = Yup.object().shape({
     tenChuTaiKhoan: Yup.string()
-      .required("Vui lòng nhập tên chủ tài khoản")
-      .trim("Tên chủ tài khoản không hợp lệ")
+      .required(t("Vui lòng nhập tên chủ tài khoản"))
+      .trim(t("Tên chủ tài khoản không hợp lệ"))
       .strict(true),
-    soTaiKhoan: Yup.string().required("Vui lòng nhập số tài khoản").trim("Số tài khoản không hợp lệ").strict(true),
+    soTaiKhoan: Yup.string().required(t("Vui lòng nhập số tài khoản")).trim(t("Số tài khoản không hợp lệ")).strict(true),
     status: Yup.boolean(),
     code: Yup.string()
-      .required("Vui lòng nhập bank code")
-      .trim("Bank code không hợp lệ")
+      .required(t("Vui lòng nhập bank code"))
+      .trim(t("Bank code không hợp lệ"))
       .test(
         "is-valid",
         (value) => `${value} không hợp lệ`,
@@ -95,13 +101,13 @@ const FormBank = ({ data, handleOnSubmit, hideStatus }) => {
               flexDirection: "column",
             }}
           >
-            <Typography>Tên chủ tài khoản</Typography>
+            <Typography> {t("Tên chủ tài khoản")} </Typography>
             <Controller
               name="tenChuTaiKhoan"
               control={control}
               render={({ field: { ref, ...field } }) => (
                 <OutlinedInput
-                  placeholder="Tên chủ tài khoản"
+                  placeholder={t("Tên chủ tài khoản")}
                   size="small"
                   fullWidth
                   error={errors.tenChuTaiKhoan ? true : false}
@@ -121,13 +127,13 @@ const FormBank = ({ data, handleOnSubmit, hideStatus }) => {
               flexDirection: "column",
             }}
           >
-            <Typography>Số tài khoản</Typography>
+            <Typography> {t("Số tài khoản")} </Typography>
             <Controller
               name="soTaiKhoan"
               control={control}
               render={({ field: { ref, ...field } }) => (
                 <OutlinedInput
-                  placeholder="Số tài khoản"
+                  placeholder={t("Số tài khoản")}
                   size="small"
                   fullWidth
                   error={errors.soTaiKhoan ? true : false}
@@ -142,7 +148,7 @@ const FormBank = ({ data, handleOnSubmit, hideStatus }) => {
 
           {!hideStatus && (
             <FormControl fullWidth>
-              <Typography>Tình trạng</Typography>
+              <Typography> {t("Tình trạng")} </Typography>
               <Controller
                 name="status"
                 control={control}
@@ -168,7 +174,7 @@ const FormBank = ({ data, handleOnSubmit, hideStatus }) => {
             </FormControl>
           )}
           <FormControl fullWidth>
-            <Typography>Ngân hàng</Typography>
+            <Typography> {t("Ngân hàng")} </Typography>
             <Controller
               name="code"
               control={control}
@@ -200,7 +206,7 @@ const FormBank = ({ data, handleOnSubmit, hideStatus }) => {
             }}
           >
             <Button type="submit" onClick={handleSubmit(onSubmit)}>
-              Xác nhận
+              {t("Xác nhận")}
             </Button>
           </Box>
         </Box>
