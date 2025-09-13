@@ -2,17 +2,23 @@ import BreadcrumbBar from "@/components/admin/BreadcrumbBar";
 import Layout from "@/components/admin/Layout";
 import ListWithdraw from "@/components/admin/withdraw/ListWithdraw";
 import { NextSeo } from "next-seo";
+import { useTranslation } from "react-i18next";
+
+const Home = () => {
+	
+  const { t } = useTranslation("common");
+
 const BreadcrumbData = [
   {
-    title: "Admin",
+    title: t("Admin"),
     href: "/admin",
   },
   {
-    title: "Quản lý rút tiền",
+    title: t("Quản lý rút tiền"),
     href: "/admin/withdraw",
   },
 ];
-const Home = () => {
+
   return (
     <>
       <NextSeo title="Quản lý yêu cầu rút tiền" />
@@ -25,7 +31,7 @@ const Home = () => {
             fontSize: "2.5rem",
           }}
         >
-          Yêu cầu rút tiền
+          {t("Yêu cầu rút tiền")}
         </h1>
 
         <ListWithdraw />
