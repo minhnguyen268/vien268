@@ -17,8 +17,11 @@ import { InputComponent } from "@/custom/textfield";
 import BankService from "@/services/admin/BankService";
 import UserService from "@/services/admin/UserService";
 import DepositService from "@/services/admin/DepositService";
+import { useTranslation } from "react-i18next";
 
 const CreateDeposit = ({ refetch }) => {
+  const { t } = useTranslation("common");
+  
   const [open, setOpen] = useState(false);
   const [soTien, setSoTien] = useState("");
   const [userId, setUserId] = useState("");
@@ -50,7 +53,7 @@ const CreateDeposit = ({ refetch }) => {
   const submit = async () => {
     console.log(userId, soTien, nganHang, noiDung);
     if (!userId || !soTien || Number(soTien) <= 0) {
-      toast.error("Vui lòng chọn tài khoản và nhập số tiền lớn hơn 0");
+      toast.error(t("Vui lòng chọn tài khoản và nhập số tiền lớn hơn 0"));
       return;
     }
     try {
@@ -61,7 +64,7 @@ const CreateDeposit = ({ refetch }) => {
         noiDung,
       });
     } catch {
-      toast.error("Tạo yêu cầu nạp tiền thất bại");
+      toast.error(t("Tạo yêu cầu nạp tiền thất bại"));
       return;
     }
     refetch();
@@ -69,7 +72,7 @@ const CreateDeposit = ({ refetch }) => {
     setUserId("");
     setNganHang("");
     setNoiDung("");
-    toast.success("Tạo yêu cầu nạp tiền thành công");
+    toast.success(t("Tạo yêu cầu nạp tiền thành công"));
     setOpen(false);
   };
 
@@ -81,11 +84,11 @@ const CreateDeposit = ({ refetch }) => {
             setOpen(true);
           }}
         >
-          Tạo yêu cầu nạp tiền
+		{t("Tạo yêu cầu nạp tiền")}
         </Button>
       </div>
       <Dialog open={open} onClose={() => setOpen(false)} sx={{ "& .MuiDialog-paper": { minWidth: "600px" } }}>
-        <DialogTitle sx={{ textAlign: "center" }}>Tạo yêu cầu nạp tiền</DialogTitle>
+        <DialogTitle sx={{ textAlign: "center" }}> {t("Tạo yêu cầu nạp tiền")} </DialogTitle>
         <DialogContent>
           <Box
             sx={{
@@ -110,7 +113,7 @@ const CreateDeposit = ({ refetch }) => {
                       "& .MuiOutlinedInput-root": { borderColor: "black" },
                     }}
                     {...params}
-                    label="Chọn tài khoản (bắt buộc)"
+                    label={t("Chọn tài khoản (bắt buộc)")}
                     variant="outlined"
                     size="small"
                   />
@@ -130,7 +133,7 @@ const CreateDeposit = ({ refetch }) => {
                       "& .MuiOutlinedInput-root": { borderColor: "black" },
                     }}
                     {...params}
-                    label="Chọn ngân hàng"
+                    label={t("Chọn ngân hàng")}
                     variant="outlined"
                     size="small"
                   />
@@ -140,9 +143,9 @@ const CreateDeposit = ({ refetch }) => {
               />
             </FormControl>
             <FormControl fullWidth>
-              <Typography>Số tiền (bắt buộc)</Typography>
+              <Typography> {t("Số tiền (bắt buộc)")}</Typography>
               <InputComponent
-                placeholder="Số tiền"
+                placeholder={t("Số tiền")}
                 size="small"
                 type="number"
                 fullWidth
@@ -157,9 +160,9 @@ const CreateDeposit = ({ refetch }) => {
               />
             </FormControl>
             <FormControl fullWidth>
-              <Typography>Nội dung</Typography>
+              <Typography> {t("Nội dung")} </Typography>
               <OutlinedInput
-                placeholder="Nội dung"
+                placeholder={t("Nội dung")}
                 onChange={(e) => setNoiDung(e.target.value)}
                 size="small"
                 type="text"
@@ -171,10 +174,10 @@ const CreateDeposit = ({ refetch }) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpen(false)} color="secondary">
-            Đóng
+            {t("Đóng")}
           </Button>
           <Button onClick={submit} color="primary">
-            Tạo
+            {t("Tạo")}
           </Button>
         </DialogActions>
       </Dialog>
