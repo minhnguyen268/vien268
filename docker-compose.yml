@@ -5,8 +5,8 @@ services:
       context: ./front-end
       dockerfile: Dockerfile
       args:
-        NEXTAUTH_URL: http://localhost:3002
-        ENDPOINT_SERVER: https://localhost:8082
+        NEXTAUTH_URL: http://casinotheworldvenetian.com
+        ENDPOINT_SERVER: https://admin.casinotheworldvenetian.com
         NEXTAUTH_SECRET: bsad21451a2120d56rr95ca0f8e0bbcb
         LIMIT_RESULTS: 10
         JWT_ACCESSTOKEN_EXPIRED: 10d
