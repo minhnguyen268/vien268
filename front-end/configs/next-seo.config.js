@@ -1,8 +1,8 @@
 const NextSeoConfig = {
   title: null,
-  titleTemplate: "%s | THE VENETIAN MACAO",
-  defaultTitle: "THE VENETIAN MACAO",
-  description: "THE VENETIAN MACAO - Hệ thống casino trực tuyến",
+  titleTemplate: "%s | THE VEN CASINO ONLINE",
+  defaultTitle: "THE VEN CASINO ONLINE",
+  description: "THE VEN CASINO ONLINE - Online Casino System",
   additionalMetaTags: [
     {
       property: "keywords",
@@ -23,8 +23,8 @@ const NextSeoConfig = {
     type: "website",
     locale: "vi_VN",
     url: process.env.NEXTAUTH_URL,
-    siteName: "THE VENETIAN MACAO CASINO",
-    description: "THE VENETIAN MACAO",
+    siteName: "THE VEN CASINO ONLINE",
+    description: "THE VEN CASINO ONLINE",
     images: [
       {
         url: "/assets/images-new/logo.png",
@@ -37,8 +37,8 @@ const NextSeoConfig = {
     appId: process.env.FACEBOOK_APPID,
   },
   twitter: {
-    handle: "@VENETIAN",
-    site: "@VENETIAN",
+    handle: "@VEN333",
+    site: "@VEN333",
     cardType: "summary_large_image",
   },
 };
