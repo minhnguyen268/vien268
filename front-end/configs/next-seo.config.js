@@ -1,8 +1,8 @@
 const NextSeoConfig = {
   title: null,
-  titleTemplate: "%s | THE VEN CASINO ONLINE",
-  defaultTitle: "THE VEN CASINO ONLINE",
-  description: "THE VEN CASINO ONLINE - Online Casino System",
+  titleTemplate: "%s | WORLD CASINO ONLINE",
+  defaultTitle: "WORLD CASINO ONLINE",
+  description: "WORLD CASINO ONLINE - Online Casino System",
   additionalMetaTags: [
     {
       property: "keywords",
@@ -23,8 +23,8 @@ const NextSeoConfig = {
     type: "website",
     locale: "vi_VN",
     url: process.env.NEXTAUTH_URL,
-    siteName: "THE VEN CASINO ONLINE",
-    description: "THE VEN CASINO ONLINE",
+    siteName: "WORLD CASINO ONLINE",
+    description: "WORLD CASINO ONLINE",
     images: [
       {
         url: "/assets/images-new/logo.png",
@@ -37,8 +37,8 @@ const NextSeoConfig = {
     appId: process.env.FACEBOOK_APPID,
   },
   twitter: {
-    handle: "@VEN333",
-    site: "@VEN333",
+    handle: "@VEN3A3",
+    site: "@VEN3A3",
     cardType: "summary_large_image",
   },
 };
