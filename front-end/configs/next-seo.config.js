@@ -1,12 +1,12 @@
 const NextSeoConfig = {
   title: null,
-  titleTemplate: "%s | WORLD CASINO ONLINE",
-  defaultTitle: "WORLD CASINO ONLINE",
-  description: "WORLD CASINO ONLINE - Online Casino System",
+  titleTemplate: "%s | WIN GAMES ONLINE",
+  defaultTitle: "WIN GAMES ONLINE 2026",
+  description: "WORLD GAMES ONLINE - Online Play Games System",
   additionalMetaTags: [
     {
       property: "keywords",
-      content: "megalott, xo so, xoso, keno, keno 1p, keno 3p, keno 5p, keno online",
+      content: "game block online, games happy, games fishhing",
     },
     {
       name: "viewport",
@@ -16,18 +16,18 @@ const NextSeoConfig = {
   additionalLinkTags: [
     {
       rel: "icon",
-      href: "/assets/images/logo.png",
+      href: "/assets/banner1.jpg",
     },
   ],
   openGraph: {
     type: "website",
     locale: "vi_VN",
     url: process.env.NEXTAUTH_URL,
-    siteName: "WORLD CASINO ONLINE",
-    description: "WORLD CASINO ONLINE",
+    siteName: "WORLD GAMES ONLINE",
+    description: "WORLD GAMES ONLINE",
     images: [
       {
-        url: "/assets/images-new/logo.png",
+        url: "/assets/banner1.jpg",
         width: 1200,
         height: 628,
       },
